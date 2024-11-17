@@ -1,3 +1,87 @@
-[gd_scene format=3 uid="uid://u22a5a24mbu3"]
+[gd_scene load_steps=10 format=3 uid="uid://u22a5a24mbu3"]
+
+[ext_resource type="Texture2D" uid="uid://bcgr5amsq3jfl" path="res://addons/block_code/examples/pong_game/assets/ball.png" id="1_5ynb4"]
+[ext_resource type="Script" path="res://addons/block_code/simple_nodes/simple_character/simple_character.gd" id="2_ij38e"]
+[ext_resource type="Texture2D" uid="uid://tplpgtnfeda0" path="res://addons/block_code/examples/pong_game/assets/paddle.png" id="3_g3o3k"]
+[ext_resource type="Script" path="res://addons/block_code/simple_nodes/simple_scoring/simple_scoring.gd" id="4_y87ul"]
+[ext_resource type="Texture2D" uid="uid://ceiq8wmlnnnif" path="res://addons/block_code/examples/pong_game/assets/space.png" id="5_883qv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xexju"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u46uc"]
+radius = 62.0081
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6laq1"]
+size = Vector2(2868, 111)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttbul"]
+size = Vector2(123, 1295)
 
 [node name="PongGame" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(6.08, 3.44)
+texture = ExtResource("5_883qv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="LeftPaddle" type="CharacterBody2D" parent="." groups=["affected_by_gravity"]]
+modulate = Color(1, 0.192157, 1, 1)
+position = Vector2(-1091, 26)
+script = ExtResource("2_ij38e")
+texture = ExtResource("3_g3o3k")
+
+[node name="RightPaddle" type="CharacterBody2D" parent="." groups=["affected_by_gravity"]]
+modulate = Color(0.372549, 0.419608, 1, 1)
+position = Vector2(1073, 38)
+script = ExtResource("2_ij38e")
+texture = ExtResource("3_g3o3k")
+
+[node name="Ball" type="RigidBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_xexju")
+gravity_scale = 0.0
+linear_velocity = Vector2(400, 400)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+modulate = Color(0.631373, 0.329412, 1, 1)
+texture = ExtResource("1_5ynb4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+position = Vector2(3, -6)
+shape = SubResource("CircleShape2D_u46uc")
+
+[node name="TopWall" type="StaticBody2D" parent="."]
+position = Vector2(-11, -656)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+position = Vector2(60, -49)
+shape = SubResource("RectangleShape2D_6laq1")
+
+[node name="BottomWall" type="StaticBody2D" parent="."]
+position = Vector2(-2, 758)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+position = Vector2(60, -49)
+shape = SubResource("RectangleShape2D_6laq1")
+
+[node name="SimpleScoring" type="CanvasLayer" parent="." groups=["hud"]]
+offset = Vector2(-1000, -700)
+transform = Transform2D(1, 0, 0, 1, -1000, -700)
+script = ExtResource("4_y87ul")
+
+[node name="LeftGoal" type="Area2D" parent="."]
+position = Vector2(-1244, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftGoal"]
+position = Vector2(21, 1)
+shape = SubResource("RectangleShape2D_ttbul")
+
+[node name="RightGoal" type="Area2D" parent="."]
+position = Vector2(1207, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightGoal"]
+position = Vector2(21, 1)
+shape = SubResource("RectangleShape2D_ttbul")
