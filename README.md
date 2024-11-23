@@ -79,5 +79,6 @@
    1. Drag it to the top of the list so it doesn't block the other elements
    1. Select the **Ball - Sprite2D** and in the **Canvas Item - Visibility** Choose **Modulate** and pick a nice colour.
    1. Do the same for both of the Paddles
+1. ▶️ Give it a try! You should see the ball bouncing around a bit before getting lost.
 
 ## Coding [YouTube Video](https://www.youtube.com/watch?v=WlUN7Zz0Djg)
