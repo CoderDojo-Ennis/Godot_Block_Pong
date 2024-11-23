@@ -1,3 +1,9 @@
+# GODOT BLOCK PONG
+
+![Block Pong Tutorial Page](./docs/UrlQr.png)
+
+[^^ This Page ^^](https://tinyurl.com/godot-block-pong)
+
 # Important Points
 
 - Math Skills
@@ -13,9 +19,9 @@
   - A LOT more power and control. No limitations
   - Things in the virtual world are like real world things.
     - In order to see something on the screen, we need a camera
-  - Sub-scenes
   - Node heirarchy instead of flat list
     - Each scene must have one root node
+  - Sub-scenes
   - There are 2D and 3D nodes that generally don't mix
   - The visual and physical aspects of the virtual world are separate
 
